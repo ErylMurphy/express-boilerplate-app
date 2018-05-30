@@ -1,4 +1,4 @@
-# Quotestagram
+# Express Boilerplate
 
 This is an example of a "gold standard" application for Unit 2 using Express.
 
