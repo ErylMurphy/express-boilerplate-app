@@ -2,6 +2,9 @@
 
 This is an example of a "gold standard" application for Unit 2 using Express.
 
+## When using this, first thing to do is to change the application name from `dogstagram` to your app
+## Next, change all instances of `dog, dogs, Dog, and Dogs` to whatever you're building
+
 ## Setup
 
 Install dependencies
