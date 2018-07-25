@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
-const Dog = require("./models/dog");
+const Quote = require("./models/Quote");
+const Category = require("./models/Category");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 
@@ -20,18 +21,71 @@ const PORT = process.env.PORT || 4567;
 app.use("/public", express.static("public"));
 
 // Set the folder for where our views are.
-app.set("views", path.join(__dirname, "views"));
+//we're turning off the app.set funciton because express defaults to the views directory by convention now. 
+// app.set("views", path.join(__dirname, "views"));
 
 // Tell Express that we use EJS in our views.
 app.set("view engine", "ejs");
 
 app.get("/", (request, response) => {
-  response.render("homepage");
+  Category.all().then(categoryData => {
+  response.render("homepage", {categories: categoryData});
+})});
+
+app.get("/quotes", (request, response) => {
+  Quote.all().then(quotesData => {
+    response.render("quotes/index", { quotes: quotesData });
+  });
 });
 
-app.get("/dogs", (request, response) => {
-  Dog.all().then(dogs => {
-    response.render("dogs/index", { dogs: dogs });
+app.post("/quotes", (request, response) => {
+  const newQuote = request.body; 
+  Quote.create(newQuote).then(quoteData => {
+    response.redirect(302, "/quotes");
+  })
+});
+
+app.get("/quotes/new", (request, response) => {
+  response.render("quotes/new");
+});
+
+
+app.get("/quotes/:id/edit", (request, response) => {
+  const id = Number(request.params.id);
+  Quote.findById(id).then(quoteData => {
+    response.render("quotes/show", { quote: quoteData })
+  })
+});
+
+app.put("/quotes/:id", (request, response => {
+  const id = Number(request.params.id);
+  const updatedQuote = request.body;
+  Quote.updateById(id, updatedQuote).then(quoteData => {
+    response.render("quotes/show", { quote: quoteData });
+  })
+}))
+
+app.get("/quotes/:id", (request, response) => {
+  const id = Number(request.params.id);
+  Quote.findById(id).then(quoteData => {
+    response.render("quotes/show", {quote: quoteData})
+  })
+});
+
+app.delete("/quotes/:id", (request, response) => {
+  const id = Number(request.params.id);
+  Quote.delete(id).then(quote => {
+    response.redirect(302, "/quotes");
+  })
+})
+
+app.get ("/categories/:id", (request, response) => {
+  const id = Number(request.params.id);
+  Promise.all([
+    Category.findById(id), 
+    Quote.allByCategoryId(id)
+  ]).then(([category, quotes]) => {
+    response.render("categories/show", {category: category, quotes: quotes})
   });
 });
 

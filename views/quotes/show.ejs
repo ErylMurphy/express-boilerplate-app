@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <div class="page-container">
+      <h2 class="page-title">One Single Quote</h2>
+
+          <blockquote><%= quote.author %> says: <%= quote.content %></blockquote>
+          <form method = "POST" action ="/quotes/<%= quote.id %>?_method=DELETE">
+          </form>
+          <button type ="submit">Delete Quote</button>
+        </div>
+    </div>
+  </body>
+</html>

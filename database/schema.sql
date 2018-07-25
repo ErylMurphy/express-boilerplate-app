@@ -1,11 +1,20 @@
-CREATE DATABASE dogstagram;
+CREATE DATABASE quotestagram;
 
-\c dogstagram
+\c quotestagram
 
-DROP TABLE IF EXISTS dogs;
+DROP TABLE IF EXISTS quotes;
 
-CREATE TABLE dogs (
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
-  breed TEXT,
   name TEXT
 );
+
+CREATE TABLE quotes (
+  id SERIAL PRIMARY KEY,
+  author TEXT,
+  content TEXT,
+  category_id INTEGER REFERENCES categories(id)
+);
+

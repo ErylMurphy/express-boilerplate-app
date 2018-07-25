@@ -1,22 +1,29 @@
-\c dogstagram
+\c quotestagram
 
-DELETE FROM dogs;
+DELETE FROM quotes;
+DELETE FROM categories;
 
-INSERT INTO dogs (breed, name)
+INSERT INTO categories (name) VALUES ('humor');
+INSERT INTO categories (name) VALUES ('morbid');
+INSERT INTO categories (name) VALUES ('inspirational');
+
+INSERT INTO quotes (author, content, category_id)
 VALUES (
-  'australian shepherd',
-  'cammie'
+  'eric',
+  'totally, yeah!', 
+  1
 );
 
-INSERT INTO dogs (breed, name)
+INSERT INTO quotes (author, content, category_id)
 VALUES (
-  'brown lab',
-  'riley'
+  'ryan',
+  'ummmmm!', 
+  2
 );
 
-
-INSERT INTO dogs (breed, name)
+INSERT INTO quotes (author, content, category_id)
 VALUES (
-  'poodle',
-  'milo'
+  'mike',
+  'cool. nifty. tubular. nailed it.', 
+  3
 );

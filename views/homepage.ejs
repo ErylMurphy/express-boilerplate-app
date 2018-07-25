@@ -7,6 +7,13 @@
     <div class="page-container">
 
       <p>Welcome to your APP, a place to share inspirational, funny, and absurd quotes</p>
+      <p>Check out <a href="/quotes">ALL QUOTES</a></p>
+      <p>Check out CATEGORIES</p>
+      <ul>
+      <% categories.forEach(category => {  %>
+     <li><a href="/categories/<%= category.id %>"><%= category.name %></a> </li>
+      <% }); %>
+      </ul>
     </div>
   </body>
 </html>

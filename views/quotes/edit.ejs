@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <div class="page-container">
+      <h2 class="page-title">Write a New Quote</h2>
+
+      <form action = "/quotes/<%= quote.id %>?_method=PUT" method="POST">
+      <input value = "<%= quote.author %>" name = "author">
+      <input value = "<%= quote.content %>" name = "content">
+      <input value = "<%= quote.category_id %>" name = "category_id">
+      <button type = "submit">Edit Quote!</button>
+      </form>
+      
+    </div>
+  </body>
+</html>

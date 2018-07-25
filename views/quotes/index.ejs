@@ -5,12 +5,12 @@
   </head>
   <body>
     <div class="page-container">
-      <h2 class="page-title">All Dogs</h2>
-      <% dogs.forEach(dog => { %>
+      <h2 class="page-title">All Quotes</h2>
+      <% quotes.forEach(quote => { %>
         <div class="quote-wrapper">
-          <blockquote><%= dog.breed %> – <%= dog.name %></blockquote>
+          <blockquote><%= quote.author %> – <%= quote.content %></blockquote>
           <div class="quote-actions">
-            <a href="/dogs/<%= dog.id %>">Link</a>
+            <a href="/quotes/<%= quote.id %>">Link</a>
           </div>
         </div>
       <% }) %>
